@@ -685,6 +685,7 @@ extern "C" {
 #define dlmallinfo             mallinfo
 #define dlmallopt              mallopt
 #define dlmalloc_trim          malloc_trim
+#define dlmalloc_inspect_all   malloc_inspect_all
 #define dlmalloc_walk_free_pages \
                                malloc_walk_free_pages
 #define dlmalloc_walk_heap \
@@ -1039,6 +1040,10 @@ void*  dlpvalloc(size_t);
   Malloc_trim returns 1 if it actually released any memory, else 0.
 */
 int  dlmalloc_trim(size_t);
+
+/* inspect_all */
+void dlmalloc_inspect_all(void(*handler)(void*, void *, size_t, void*),
+                           void* arg);
 
 /*
   malloc_walk_free_pages(handler, harg)
@@ -1795,6 +1800,7 @@ typedef unsigned int flag_t;           /* The type of various bit flag sets */
 /* extraction of fields from head words */
 #define cinuse(p)           ((p)->head & CINUSE_BIT)
 #define pinuse(p)           ((p)->head & PINUSE_BIT)
+#define is_inuse(p)         (((p)->head & INUSE_BITS) != PINUSE_BIT)
 #define chunksize(p)        ((p)->head & ~(INUSE_BITS))
 
 #define clear_pinuse(p)     ((p)->head &= ~PINUSE_BIT)
@@ -4594,6 +4600,56 @@ int dlmalloc_trim(size_t pad) {
     POSTACTION(gm);
   }
   return result;
+}
+
+static void internal_inspect_all(mstate m,
+                                 void(*handler)(void *start,
+                                                void *end,
+                                                size_t used_bytes,
+                                                void* callback_arg),
+                                 void* arg) {
+  if (is_initialized(m)) {
+    mchunkptr top = m->top;
+    msegmentptr s;
+    for (s = &m->seg; s != 0; s = s->next) {
+      mchunkptr q = align_as_chunk(s->base);
+      while (segment_holds(s, q) && q->head != FENCEPOST_HEAD) {
+        mchunkptr next = next_chunk(q);
+        size_t sz = chunksize(q);
+        size_t used;
+        void* start;
+        if (is_inuse(q)) {
+          used = sz - CHUNK_OVERHEAD; /* must not be mmapped */
+          start = chunk2mem(q);
+        }
+        else {
+          used = 0;
+          if (is_small(sz)) {     /* offset by possible bookkeeping */
+            start = (void*)((char*)q + sizeof(struct malloc_chunk));
+          }
+          else {
+            start = (void*)((char*)q + sizeof(struct malloc_tree_chunk));
+          }
+        }
+        if (start < (void*)next)  /* skip if all space is bookkeeping */
+          handler(start, next, used, arg);
+        if (q == top)
+          break;
+        q = next;
+      }
+    }
+  }
+}
+
+void dlmalloc_inspect_all(void(*handler)(void *start,
+                                         void *end,
+                                         size_t used_bytes,
+                                         void* callback_arg),
+                          void* arg) {
+  if (!PREACTION(gm)) {
+    internal_inspect_all(gm, handler, arg);
+    POSTACTION(gm);
+  }
 }
 
 size_t dlmalloc_footprint(void) {
