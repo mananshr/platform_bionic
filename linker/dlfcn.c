@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include "linker.h"
 #include "linker_format.h"
+#include "linker_debug.h"
 
 /* This file hijacks the symbols stubbed out in libdl.so. */
 
@@ -55,6 +56,7 @@ void *dlopen(const char *filename, int flag)
 {
     soinfo *ret;
 
+    PRINT("Will try to dlopen() filename: %s\n", filename?filename:"");
     pthread_mutex_lock(&dl_lock);
     ret = find_library(filename);
     if (unlikely(ret == NULL)) {

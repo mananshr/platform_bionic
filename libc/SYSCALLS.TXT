@@ -313,3 +313,6 @@ int     cacheflush:ARM_cacheflush(long start, long end, long flags)  983042,-1,-
 # MIPS-specific
 int	_flush_cache:cacheflush(char *addr, const int nbytes, const int op)	-1,-1,147
 int	syscall(int number,...) -1,-1,0
+
+int    ioperm(unsigned long, unsigned long, int)       101
+int    iopl(int)       110

@@ -330,6 +330,12 @@
 #define __NR_utimensat                    (__NR_SYSCALL_BASE + 320)
 #define __NR_eventfd2                     (__NR_SYSCALL_BASE + 328)
 #define __NR_pipe2                        (__NR_SYSCALL_BASE + 331)
+#define __NR_adjtimex                     (__NR_SYSCALL_BASE + 124)
+#define __NR_stime                        (__NR_SYSCALL_BASE + 25)
+#define __NR_swapon                       (__NR_SYSCALL_BASE + 87)
+#define __NR_swapoff                      (__NR_SYSCALL_BASE + 115)
+#define __NR_ioperm                       (__NR_SYSCALL_BASE + 101)
+#define __NR_iopl                         (__NR_SYSCALL_BASE + 110)
 #endif
 
 #ifdef __mips__
