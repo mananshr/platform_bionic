@@ -83,7 +83,7 @@ struct input_absinfo {
 
 #define SYN_REPORT 0
 #define SYN_CONFIG 1
-
+#define SYN_MT_REPORT 2
 #define KEY_RESERVED 0
 #define KEY_ESC 1
 #define KEY_1 2
@@ -550,6 +550,9 @@ struct input_absinfo {
 #define ABS_TOOL_WIDTH 0x1c
 #define ABS_VOLUME 0x20
 #define ABS_MISC 0x28
+#define ABS_MT_POSITION_X 0x35
+#define ABS_MT_POSITION_Y 0x36
+#define ABS_MT_PRESSURE 0x3a
 #define ABS_MAX 0x3f
 
 #define SW_LID 0x00  
