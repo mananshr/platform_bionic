@@ -700,7 +700,7 @@ LOCAL_SRC_FILES := \
 
 LOCAL_MODULE:= libc_malloc_debug_leak
 
-LOCAL_SHARED_LIBRARIES := libc
+LOCAL_SHARED_LIBRARIES := libc libdl
 LOCAL_WHOLE_STATIC_LIBRARIES := libc_common
 LOCAL_SYSTEM_SHARED_LIBRARIES :=
 # Don't prelink
