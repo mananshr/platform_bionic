@@ -3,7 +3,7 @@
 #include <machine/asm.h>
 #include <asm/unistd.h>
 
-ENTRY(iopl)
+ENTRY(swapon)
     pushl   %ebx
     pushl   %ecx
     mov     12(%esp), %ebx
