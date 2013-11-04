@@ -324,3 +324,11 @@ int     cacheflush:__ARM_NR_cacheflush(long start, long end, long flags)  1,-1,-
 # MIPS-specific
 int     _flush_cache:cacheflush(char *addr, const int nbytes, const int op) -1,-1,1
 int     syscall(int number,...) -1,-1,1
+
+# Genymotion additions
+int     ioperm(unsigned long, unsigned long, int)      -1,1,-1
+int     iopl(int)       -1,1,-1
+int     adjtimex(struct timex*) -1,1,-1
+int     stime(time_t *) -1,1,-1
+int     swapon(const char *, int) -1,1,-1
+int     swapoff(const char *) -1,1,-1

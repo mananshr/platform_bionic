@@ -208,3 +208,7 @@ syscall_src += arch-x86/syscalls/inotify_add_watch.S
 syscall_src += arch-x86/syscalls/inotify_rm_watch.S
 syscall_src += arch-x86/syscalls/poll.S
 syscall_src += arch-x86/syscalls/eventfd.S
+syscall_src += arch-x86/syscalls/ioperm.S
+syscall_src += arch-x86/syscalls/iopl.S
+syscall_src += arch-x86/syscalls/adjtimex.S
+syscall_src += arch-x86/syscalls/stime.S
