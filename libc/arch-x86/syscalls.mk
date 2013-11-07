@@ -178,3 +178,4 @@ syscall_src += arch-x86/syscalls/poll.S
 syscall_src += arch-x86/syscalls/eventfd.S
 syscall_src += arch-x86/syscalls/swapon.S
 syscall_src += arch-x86/syscalls/swapoff.S
+syscall_src += arch-x86/syscalls/getsid.S
