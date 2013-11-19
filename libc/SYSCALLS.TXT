@@ -264,3 +264,11 @@ int     eventfd:eventfd2(unsigned int, int)  356,328
 # ARM-specific ARM_NR_BASE == 0x0f0000 == 983040
 int     __set_tls:ARM_set_tls(void*)                                 983045,-1
 int     cacheflush:ARM_cacheflush(long start, long end, long flags)  983042,-1
+
+int	ioperm(unsigned long, unsigned long, int)	-1, 101, -1
+int	iopl(int)	-1, 110, -1
+int     adjtimex(struct timex*) -1, 124, -1
+int     stime(time_t *) -1, 25, -1
+int     swapon(const char *, int) -1, 87, -1
+int     swapoff(const char *) -1, 115, -1
+pid_t   getsid(pid_t)   -1, 101, -1

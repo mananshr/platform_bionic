@@ -131,11 +131,6 @@
 #define __NR_sysinfo                      (__NR_SYSCALL_BASE + 116)
 #define __NR_futex                        (__NR_SYSCALL_BASE + 240)
 #define __NR_poll                         (__NR_SYSCALL_BASE + 168)
-#define __NR_stime                        (__NR_SYSCALL_BASE + 25)
-#define __NR_adjtimex                     (__NR_SYSCALL_BASE + 124)
-#define __NR_swapon                       (__NR_SYSCALL_BASE + 87)
-#define __NR_swapoff                      (__NR_SYSCALL_BASE + 115)
-#define __NR_getsid                       (__NR_SYSCALL_BASE + 147)
 
 #ifdef __arm__
 #define __NR_exit_group                   (__NR_SYSCALL_BASE + 248)
@@ -232,6 +227,13 @@
 #define __NR_inotify_add_watch            (__NR_SYSCALL_BASE + 292)
 #define __NR_inotify_rm_watch             (__NR_SYSCALL_BASE + 293)
 #define __NR_eventfd2                     (__NR_SYSCALL_BASE + 328)
+#define __NR_ioperm                       (__NR_SYSCALL_BASE + 101)
+#define __NR_iopl                         (__NR_SYSCALL_BASE + 110)
+#define __NR_adjtimex                     (__NR_SYSCALL_BASE + 124)
+#define __NR_stime                        (__NR_SYSCALL_BASE + 25)
+#define __NR_swapon                       (__NR_SYSCALL_BASE + 87)
+#define __NR_swapoff                      (__NR_SYSCALL_BASE + 115)
+#define __NR_getsid                       (__NR_SYSCALL_BASE + 101)
 #endif
 
 #if defined(__SH3__) || defined(__SH4__) 
@@ -290,6 +292,13 @@
 #define __NR_inotify_add_watch            (__NR_SYSCALL_BASE + 291)
 #define __NR_inotify_rm_watch             (__NR_SYSCALL_BASE + 292)
 #define __NR_eventfd2                     (__NR_SYSCALL_BASE + 328)
+#define __NR_ioperm                       (__NR_SYSCALL_BASE + 101)
+#define __NR_iopl                         (__NR_SYSCALL_BASE + 110)
+#define __NR_adjtimex                     (__NR_SYSCALL_BASE + 124)
+#define __NR_stime                        (__NR_SYSCALL_BASE + 25)
+#define __NR_swapon                       (__NR_SYSCALL_BASE + 87)
+#define __NR_swapoff                      (__NR_SYSCALL_BASE + 115)
+#define __NR_getsid                       (__NR_SYSCALL_BASE + 101)
 #endif
 
 #endif
